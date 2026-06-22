@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grace Olorunfemi — Web Dev Pricing</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236B4F35'/><text x='50' y='72' font-family='serif' font-size='65' fill='%23F5F0E8' text-anchor='middle'>G</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
 <style>
@@ -128,7 +129,7 @@
     overflow: hidden;
     transform: rotateY(-6deg) rotateX(2deg);
     transition: transform 0.6s ease;
-    animation: float-main 6s ease-in-out infinite;
+    animation: float-main 3s ease-in-out infinite;
   }
   .hero-visual:hover .mock-browser { transform: rotateY(-2deg) rotateX(0deg); }
 
@@ -310,17 +311,17 @@
   .float-card.order {
     top: 8%;
     left: -8%;
-    animation: float-a 5s ease-in-out infinite;
+    animation: float-a 2.5s ease-in-out infinite;
   }
   .float-card.sales {
     bottom: 12%;
     right: -6%;
-    animation: float-b 5s ease-in-out infinite 1s;
+    animation: float-b 2.5s ease-in-out infinite 0.5s;
   }
   .float-card.rating {
     bottom: 38%;
     left: -10%;
-    animation: float-c 6s ease-in-out infinite 0.5s;
+    animation: float-c 3s ease-in-out infinite 0.3s;
   }
 
   @keyframes float-a {
@@ -356,7 +357,7 @@
     border: 1px dashed var(--border);
     border-radius: 30px;
     z-index: -1;
-    animation: spin-slow 60s linear infinite;
+    animation: spin-slow 25s linear infinite;
   }
   @keyframes spin-slow {
     to { transform: rotate(360deg); }
@@ -476,6 +477,7 @@
   .section-eyebrow::before {
     content: '';
     display: inline-block;
+    width: 20px; height: 1px;
     background: var(--brown-pale);
   }
   .section-title {
@@ -681,6 +683,7 @@
   .term-card {
     background: var(--cream);
     border-radius: 16px;
+    border: 0.5px solid var(--border);
     padding: 1.8rem 1.6rem;
     position: relative;
     overflow: hidden;
@@ -1018,10 +1021,10 @@
     <div class="hero-copy hero-inner">
       <p class="hero-eyebrow">Web Development Services</p>
       <h1 class="hero-title">
-        E-commerce websites<br>built to just for you to <em>sell.</em>
+        E-commerce websites<br>built to <em>sell.</em>
       </h1>
       <p class="hero-sub">
-        Clean, functional online stores. From the storefront your customers love to the backend that keeps everything running. Clear pricing, no surprises.
+        Clean, functional online stores — from the storefront your customers love to the backend that keeps everything running. Clear pricing, no surprises.
       </p>
       <div class="hero-actions">
         <a href="#packages" class="hero-cta">
@@ -1151,7 +1154,7 @@
   <div class="reveal">
     <p class="section-eyebrow">Service packages</p>
     <h2 class="section-title">Choose your tier</h2>
-    <p class="section-sub">All packages include mobile responsive design, basic SEO setup, and 2 rounds of revisions.</p>
+    <p class="section-sub">All packages include mobile-responsive design, basic SEO setup, and 2 rounds of revisions.</p>
   </div>
   <div class="pkg-grid reveal reveal-delay-1">
 
@@ -1298,7 +1301,7 @@
   <div class="reveal">
     <p class="section-eyebrow">Payment terms</p>
     <h2 class="section-title">How payment works</h2>
-    <p class="section-sub">Split into three milestones. You only move forward when you're satisfied with the current stage.</p>
+    <p class="section-sub">Split into three milestones — you only move forward when you're satisfied with the current stage.</p>
   </div>
   <div class="terms-grid reveal reveal-delay-1">
     <div class="term-card">
