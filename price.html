@@ -21,6 +21,7 @@
     --muted: #9C8470;
     --border: rgba(107,79,53,0.15);
     --border-strong: rgba(107,79,53,0.3);
+    --nav-h: 62px;
   }
 
   html { scroll-behavior: smooth; }
@@ -34,13 +35,15 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAV */
+  /* ─── NAV ─────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 2.5rem;
-    background: rgba(245,240,232,0.92);
-    backdrop-filter: blur(10px);
+    height: var(--nav-h);
+    padding: 0 2.5rem;
+    background: rgba(245,240,232,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 0.5px solid var(--border);
   }
   .nav-logo {
@@ -48,6 +51,7 @@
     font-size: 1.1rem;
     color: var(--brown);
     text-decoration: none;
+    white-space: nowrap;
   }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
@@ -56,248 +60,440 @@
     color: var(--muted);
     text-decoration: none;
     transition: color 0.2s;
+    white-space: nowrap;
   }
   .nav-links a:hover { color: var(--brown); }
 
-  /* HERO */
+  /* ─── HERO ────────────────────────────────── */
   .hero {
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 2.5rem 5rem;
+    padding-top: var(--nav-h);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 4rem;
     position: relative;
-    background: var(--cream);
+    overflow: hidden;
   }
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 75% 40%, rgba(196,168,130,0.25) 0%, transparent 70%);
+    background:
+      radial-gradient(ellipse 55% 55% at 80% 35%, rgba(196,168,130,0.28) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(196,168,130,0.12) 0%, transparent 60%);
     pointer-events: none;
   }
+
+  .hero-inner {
+    position: relative;
+    max-width: 720px;
+  }
+
   .hero-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--brown-pale);
-    font-weight: 500;
-    margin-bottom: 1.2rem;
-    margin-top: 2%;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
   }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--brown-pale);
+  }
+
   .hero-title {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: 1.05;
+    font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+    line-height: 1.06;
     color: var(--text);
-    max-width: 700px;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
   }
   .hero-title em {
     font-style: italic;
     color: var(--brown);
   }
+
   .hero-sub {
-    font-size: 1rem;
+    font-size: clamp(0.92rem, 1.5vw, 1rem);
     color: var(--text-2);
-    max-width: 460px;
+    max-width: 440px;
     margin-bottom: 2.5rem;
-    line-height: 1.75;
+    line-height: 1.8;
     font-weight: 300;
   }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
   .hero-cta {
-    display: inline-flex; align-items: center; gap: 0.6rem;
+    display: inline-flex; align-items: center; gap: 0.55rem;
     background: var(--brown);
     color: var(--cream);
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
-    padding: 0.9rem 2rem;
+    padding: 0.85rem 1.8rem;
     border-radius: 100px;
     text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 2px 12px rgba(107,79,53,0.25);
   }
-  .hero-cta:hover { background: var(--brown-light); transform: translateY(-1px); }
-  .hero-cta svg { width: 14px; height: 14px; }
-  .hero-rule { height: 0.5px; background: var(--border); margin-top: 5rem; }
+  .hero-cta:hover {
+    background: var(--brown-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107,79,53,0.3);
+  }
+  .hero-cta svg { width: 13px; height: 13px; }
 
-  /* SECTIONS */
+  .hero-link {
+    font-size: 0.83rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-strong);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-link:hover { color: var(--brown); border-color: var(--brown); }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 0.15rem; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--brown);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.72rem; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+  .stat-divider { width: 0.5px; height: 32px; background: var(--border-strong); flex-shrink: 0; }
+
+  /* ─── SECTIONS ────────────────────────────── */
   section { padding: 5rem 2.5rem; }
+
   .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--brown-pale);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: var(--brown-pale);
   }
   .section-title {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
     color: var(--text);
     margin-bottom: 0.8rem;
     line-height: 1.15;
+    letter-spacing: -0.01em;
   }
   .section-sub {
     font-size: 0.92rem;
     color: var(--muted);
-    max-width: 500px;
+    max-width: 480px;
     margin-bottom: 3rem;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
-  /* PACKAGES */
+  /* ─── PACKAGES ────────────────────────────── */
   #packages { background: var(--cream-2); }
+
   .pkg-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
+
   .pkg-card {
     background: var(--cream);
     border: 0.5px solid var(--border-strong);
-    border-radius: 16px;
-    padding: 2rem 1.8rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 20px;
+    padding: 2rem 1.8rem 2.2rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
   }
-  .pkg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(107,79,53,0.1); }
+  .pkg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(107,79,53,0.1);
+  }
   .pkg-card.featured {
     background: var(--brown);
     border-color: var(--brown);
     color: var(--cream);
+    box-shadow: 0 8px 32px rgba(107,79,53,0.25);
   }
+  .pkg-card.featured:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(107,79,53,0.35);
+  }
+
   .pkg-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    background: var(--cream-2);
-    color: var(--brown);
-    padding: 4px 12px;
+    background: rgba(245,240,232,0.18);
+    color: var(--cream);
+    padding: 5px 12px;
     border-radius: 100px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
+    border: 1px solid rgba(245,240,232,0.25);
+    width: fit-content;
   }
+  .pkg-badge::before { content: '★'; font-size: 0.6rem; }
+
   .pkg-name {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    margin-bottom: 0.3rem;
-    color: inherit;
+    font-size: 1.5rem;
+    margin-bottom: 0.35rem;
+    color: var(--text);
+    line-height: 1.1;
   }
   .pkg-card.featured .pkg-name { color: var(--cream); }
-  .pkg-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; }
-  .pkg-card.featured .pkg-desc { color: rgba(245,240,232,0.65); }
+
+  .pkg-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.6rem; line-height: 1.5; }
+  .pkg-card.featured .pkg-desc { color: rgba(245,240,232,0.6); }
+
   .pkg-price {
     font-family: 'DM Serif Display', serif;
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     color: var(--brown);
     line-height: 1;
     margin-bottom: 0.2rem;
+    letter-spacing: -0.02em;
   }
   .pkg-card.featured .pkg-price { color: var(--cream); }
-  .pkg-price-sub { font-size: 0.75rem; color: var(--muted); margin-bottom: 1.6rem; }
-  .pkg-card.featured .pkg-price-sub { color: rgba(245,240,232,0.55); }
-  .pkg-divider { height: 0.5px; background: var(--border); margin-bottom: 1.4rem; }
-  .pkg-card.featured .pkg-divider { background: rgba(245,240,232,0.2); }
-  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .pkg-price-sub { font-size: 0.74rem; color: var(--muted); margin-bottom: 1.8rem; }
+  .pkg-card.featured .pkg-price-sub { color: rgba(245,240,232,0.5); }
+
+  .pkg-divider { height: 0.5px; background: var(--border); margin-bottom: 1.6rem; }
+  .pkg-card.featured .pkg-divider { background: rgba(245,240,232,0.18); }
+
+  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; flex: 1; }
   .pkg-features li {
     font-size: 0.84rem;
     color: var(--text-2);
-    display: flex; align-items: flex-start; gap: 0.6rem;
+    display: flex; align-items: flex-start; gap: 0.65rem;
     line-height: 1.5;
   }
-  .pkg-card.featured .pkg-features li { color: rgba(245,240,232,0.8); }
-  .pkg-features li::before {
-    content: '✓';
-    color: var(--brown-pale);
-    font-size: 0.8rem;
-    margin-top: 0.1rem;
-    flex-shrink: 0;
-    font-weight: 600;
-  }
-  .pkg-card.featured .pkg-features li::before { color: var(--cream-3); }
+  .pkg-card.featured .pkg-features li { color: rgba(245,240,232,0.82); }
 
-  /* ADDONS */
+  .pkg-features li .check {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(107,79,53,0.1);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--brown);
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+  .pkg-card.featured .pkg-features li .check {
+    background: rgba(245,240,232,0.18);
+    color: var(--cream);
+  }
+
+  .pkg-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1.5px solid var(--border-strong);
+    color: var(--brown);
+    background: transparent;
+  }
+  .pkg-cta:hover { background: var(--brown); color: var(--cream); border-color: var(--brown); }
+  .pkg-card.featured .pkg-cta {
+    background: var(--cream);
+    color: var(--brown);
+    border-color: var(--cream);
+  }
+  .pkg-card.featured .pkg-cta:hover {
+    background: var(--cream-2);
+    border-color: var(--cream-2);
+  }
+
+  /* ─── ADDONS ──────────────────────────────── */
   #addons { background: var(--cream); }
+
   .addon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
+
   .addon-card {
     background: var(--cream-2);
     border: 0.5px solid var(--border);
-    border-radius: 12px;
-    padding: 1.4rem 1.4rem;
-    transition: background 0.2s;
+    border-radius: 16px;
+    padding: 1.6rem 1.5rem;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    cursor: default;
   }
-  .addon-card:hover { background: var(--cream-3); }
-  .addon-icon {
-    font-size: 1.4rem;
-    margin-bottom: 0.9rem;
-    color: var(--brown);
-    width: 40px; height: 40px;
+  .addon-card:hover {
     background: var(--cream-3);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107,79,53,0.08);
   }
-  .addon-name {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-  }
-  .addon-price { font-size: 0.85rem; color: var(--brown); font-weight: 500; }
-  .addon-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
 
-  /* PAYMENT TERMS */
-  #terms { background: var(--cream-2); }
-  .terms-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .term-card {
+  .addon-icon {
+    width: 42px; height: 42px;
     background: var(--cream);
     border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brown);
+    margin-bottom: 1rem;
     border: 0.5px solid var(--border);
-    padding: 1.6rem 1.5rem;
   }
+
+  .addon-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+  .addon-price { font-size: 0.88rem; color: var(--brown); font-weight: 600; }
+  .addon-note { font-size: 0.74rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.5; }
+
+  /* ─── PAYMENT TERMS ───────────────────────── */
+  #terms { background: var(--cream-2); }
+
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .term-card {
+    background: var(--cream);
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    padding: 1.8rem 1.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .term-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brown-pale), var(--brown));
+    border-radius: 0 0 16px 16px;
+  }
+
   .term-pct {
     font-family: 'DM Serif Display', serif;
-    font-size: 3.2rem;
+    font-size: 3rem;
     color: var(--brown);
     line-height: 1;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
   }
   .term-when {
-    font-size: 0.82rem;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
     color: var(--text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
   }
   .term-note { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
 
   .notice {
     background: var(--cream-3);
-    border-radius: 10px;
-    padding: 1.1rem 1.4rem;
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
     font-size: 0.82rem;
     color: var(--text-2);
-    line-height: 1.7;
+    line-height: 1.75;
+    border: 0.5px solid var(--border-strong);
   }
   .notice strong { color: var(--brown); }
 
-  /* PROCESS */
+  /* ─── PROCESS ─────────────────────────────── */
   #process { background: var(--cream); }
+
   .process-steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 0; right: 0;
+    height: 0.5px;
+    background: var(--border-strong);
+    z-index: 0;
+  }
+
+  .step {
+    position: relative;
+    padding-top: 3rem;
+    padding-right: 1.5rem;
+  }
+  .step-dot {
+    position: absolute;
+    top: 10px; left: 0;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--brown-pale);
+    z-index: 1;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .step:hover .step-dot {
+    background: var(--brown);
+    border-color: var(--brown);
   }
   .step-num {
-    font-size: 0.72rem;
-    font-weight: 600;
+    font-size: 0.7rem;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--brown-pale);
@@ -307,53 +503,121 @@
     font-family: 'DM Serif Display', serif;
     font-size: 1.1rem;
     color: var(--text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.55rem;
   }
-  .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+  .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
 
-  /* CTA */
+  /* ─── FAQ ─────────────────────────────────── */
+  #faq { background: var(--cream-2); }
+
+  .faq-list { display: flex; flex-direction: column; gap: 0; max-width: 680px; }
+  .faq-item {
+    border-bottom: 0.5px solid var(--border-strong);
+    overflow: hidden;
+  }
+  .faq-item:first-child { border-top: 0.5px solid var(--border-strong); }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.2rem 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text);
+    transition: color 0.2s;
+    list-style: none;
+    user-select: none;
+  }
+  .faq-q:hover { color: var(--brown); }
+  .faq-q::-webkit-details-marker { display: none; }
+
+  .faq-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--brown);
+    transition: transform 0.25s, background 0.2s;
+  }
+  details[open] .faq-icon { transform: rotate(45deg); background: var(--brown); color: var(--cream); border-color: var(--brown); }
+
+  .faq-a {
+    font-size: 0.86rem;
+    color: var(--muted);
+    padding: 0 0 1.2rem;
+    line-height: 1.75;
+    max-width: 580px;
+  }
+
+  /* ─── CTA ─────────────────────────────────── */
   .cta-section {
     background: var(--brown);
     padding: 6rem 2.5rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(196,168,130,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; }
   .cta-section .section-title { color: var(--cream); margin: 0 auto 1rem; }
-  .cta-section .section-sub { color: rgba(245,240,232,0.65); margin: 0 auto 2.5rem; text-align: center; }
+  .cta-section .section-sub { color: rgba(245,240,232,0.6); margin: 0 auto 2.5rem; max-width: 420px; }
+
+  .cta-btns { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }
+
   .cta-btn {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
-    padding: 0.85rem 2rem;
+    padding: 0.85rem 1.8rem;
     border-radius: 100px;
     text-decoration: none;
-    margin: 0 0.4rem;
-    transition: background 0.2s, color 0.2s, transform 0.15s;
+    transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
   }
-  .cta-btn:hover { transform: translateY(-1px); }
-  .cta-btn.solid { background: var(--cream); color: var(--brown); }
-  .cta-btn.solid:hover { background: var(--cream-2); }
-  .cta-btn.outline { background: transparent; border: 1.5px solid rgba(245,240,232,0.4); color: var(--cream); }
-  .cta-btn.outline:hover { background: rgba(245,240,232,0.1); }
+  .cta-btn:hover { transform: translateY(-2px); }
+  .cta-btn.solid {
+    background: var(--cream);
+    color: var(--brown);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .cta-btn.solid:hover { background: var(--cream-2); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+  .cta-btn.outline {
+    background: transparent;
+    border: 1.5px solid rgba(245,240,232,0.35);
+    color: var(--cream);
+  }
+  .cta-btn.outline:hover { background: rgba(245,240,232,0.1); border-color: rgba(245,240,232,0.6); }
 
+  /* ─── FOOTER ──────────────────────────────── */
   footer {
-    padding: 1.4rem 2.5rem;
+    padding: 1.6rem 2.5rem;
     border-top: 0.5px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     color: var(--muted);
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.6rem;
     background: var(--cream-2);
   }
 
-  /* REVEAL */
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  /* ─── REVEAL ──────────────────────────────── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
 
-  /* HAMBURGER */
+  /* ─── MOBILE MENU ─────────────────────────── */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -362,7 +626,8 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px;
+    padding: 6px;
+    border-radius: 8px;
   }
   .hamburger span {
     display: block;
@@ -379,38 +644,71 @@
   .mobile-menu {
     display: none;
     position: fixed;
-    top: 57px; left: 0; right: 0;
-    background: rgba(245,240,232,0.97);
-    backdrop-filter: blur(10px);
+    top: var(--nav-h); left: 0; right: 0;
+    background: rgba(245,240,232,0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 0.5px solid var(--border);
     z-index: 99;
     flex-direction: column;
-    padding: 1rem 1.5rem 1.5rem;
-    gap: 0;
+    padding: 0.5rem 1.5rem 1.2rem;
   }
   .mobile-menu.open { display: flex; }
   .mobile-menu a {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-2);
     text-decoration: none;
-    padding: 0.75rem 0;
+    padding: 0.85rem 0;
     border-bottom: 0.5px solid var(--border);
     transition: color 0.2s;
   }
   .mobile-menu a:last-child { border-bottom: none; }
   .mobile-menu a:hover { color: var(--brown); }
 
+  /* ─── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 900px) {
+    .pkg-grid { grid-template-columns: 1fr 1fr; }
+    .addon-grid { grid-template-columns: 1fr 1fr; }
+    .terms-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; }
+    .process-steps::before { display: none; }
+    .step { padding-top: 0; }
+    .step-dot { display: none; }
+  }
+
   @media (max-width: 640px) {
-    nav { padding: 1rem 1.2rem; }
+    :root { --nav-h: 58px; }
+    nav { padding: 0 1.2rem; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .hero, section, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+
+    .hero { padding-left: 1.2rem; padding-right: 1.2rem; padding-bottom: 3rem; }
+    .hero-stats { gap: 1.2rem; margin-top: 3rem; }
+    .stat-divider { display: none; }
+
+    section { padding: 3.5rem 1.2rem; }
+    .cta-section { padding: 4rem 1.2rem; }
+    footer { padding: 1.2rem; }
+
+    .pkg-grid { grid-template-columns: 1fr; }
+    .addon-grid { grid-template-columns: 1fr 1fr; }
+    .terms-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; gap: 1.5rem; }
+    .process-steps::before { display: none; }
+    .step { padding-top: 0; }
+    .step-dot { display: none; }
+  }
+
+  @media (max-width: 420px) {
+    .addon-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.3rem; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Grace Olorunfemi</a>
   <ul class="nav-links">
@@ -418,44 +716,76 @@
     <li><a href="#addons">Add-ons</a></li>
     <li><a href="#terms">Payment</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 <div class="mobile-menu" id="mobileMenu">
   <a href="#packages" class="mobile-link">Packages</a>
   <a href="#addons" class="mobile-link">Add-ons</a>
   <a href="#terms" class="mobile-link">Payment</a>
   <a href="#process" class="mobile-link">Process</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
   <a href="#contact" class="mobile-link">Contact</a>
 </div>
 
+<!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">Web Development Services</p>
-  <h1 class="hero-title">
-    E-commerce websites<br>built to <em>sell.</em>
-  </h1>
-  <p class="hero-sub">
-    I build clean, functional online stores — from the frontend your customers see to the backend that keeps everything running. Clear pricing, no surprises.
-  </p>
-  <a href="#packages" class="hero-cta">
-    See pricing
-    <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-  <div class="hero-rule"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Web Development Services</p>
+    <h1 class="hero-title">
+      E-commerce websites<br>built to <em>sell.</em>
+    </h1>
+    <p class="hero-sub">
+      Clean, functional online stores — from the storefront your customers love to the backend that keeps everything running. Clear pricing, no surprises.
+    </p>
+    <div class="hero-actions">
+      <a href="#packages" class="hero-cta">
+        See pricing
+        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#contact" class="hero-link">Get a free quote →</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">40+</span>
+        <span class="stat-label">Projects delivered</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">3+</span>
+        <span class="stat-label">Years experience</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">24h</span>
+        <span class="stat-label">Quote turnaround</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Client satisfaction</span>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- PACKAGES -->
 <section id="packages">
   <div class="reveal">
     <p class="section-eyebrow">Service packages</p>
     <h2 class="section-title">Choose your tier</h2>
     <p class="section-sub">All packages include mobile-responsive design, basic SEO setup, and 2 rounds of revisions.</p>
   </div>
-  <div class="pkg-grid reveal">
+  <div class="pkg-grid reveal reveal-delay-1">
+
     <div class="pkg-card">
       <p class="pkg-name">Starter</p>
       <p class="pkg-desc">Small shop, up to 20 products</p>
@@ -463,14 +793,17 @@
       <p class="pkg-price-sub">One-time payment</p>
       <div class="pkg-divider"></div>
       <ul class="pkg-features">
-        <li>Homepage + up to 5 pages</li>
-        <li>Product listing & detail pages</li>
-        <li>Cart & checkout flow</li>
-        <li>1 payment gateway</li>
-        <li>Mobile responsive design</li>
-        <li>2 weeks delivery</li>
+        <li><span class="check">✓</span> Homepage + up to 5 pages</li>
+        <li><span class="check">✓</span> Product listing & detail pages</li>
+        <li><span class="check">✓</span> Cart & checkout flow</li>
+        <li><span class="check">✓</span> 1 payment gateway integration</li>
+        <li><span class="check">✓</span> Mobile responsive design</li>
+        <li><span class="check">✓</span> Basic SEO setup</li>
+        <li><span class="check">✓</span> 2 weeks delivery</li>
       </ul>
+      <a href="#contact" class="pkg-cta">Get started →</a>
     </div>
+
     <div class="pkg-card featured">
       <span class="pkg-badge">Most popular</span>
       <p class="pkg-name">Standard</p>
@@ -479,14 +812,17 @@
       <p class="pkg-price-sub">One-time payment</p>
       <div class="pkg-divider"></div>
       <ul class="pkg-features">
-        <li>Everything in Starter</li>
-        <li>Admin dashboard</li>
-        <li>2 payment gateways</li>
-        <li>Order & inventory management</li>
-        <li>Product search & filters</li>
-        <li>3–4 weeks delivery</li>
+        <li><span class="check">✓</span> Everything in Starter</li>
+        <li><span class="check">✓</span> Admin dashboard</li>
+        <li><span class="check">✓</span> 2 payment gateways</li>
+        <li><span class="check">✓</span> Order & inventory management</li>
+        <li><span class="check">✓</span> Product search & filters</li>
+        <li><span class="check">✓</span> Customer accounts & auth</li>
+        <li><span class="check">✓</span> 3–4 weeks delivery</li>
       </ul>
+      <a href="#contact" class="pkg-cta">Get started →</a>
     </div>
+
     <div class="pkg-card">
       <p class="pkg-name">Premium</p>
       <p class="pkg-desc">Full-scale store, unlimited products</p>
@@ -494,38 +830,44 @@
       <p class="pkg-price-sub">One-time payment</p>
       <div class="pkg-divider"></div>
       <ul class="pkg-features">
-        <li>Everything in Standard</li>
-        <li>Custom backend & API</li>
-        <li>Multi-vendor support</li>
-        <li>Analytics dashboard</li>
-        <li>Email automation</li>
-        <li>3 months free support</li>
+        <li><span class="check">✓</span> Everything in Standard</li>
+        <li><span class="check">✓</span> Custom backend & API</li>
+        <li><span class="check">✓</span> Multi-vendor support</li>
+        <li><span class="check">✓</span> Analytics dashboard</li>
+        <li><span class="check">✓</span> Email automation</li>
+        <li><span class="check">✓</span> 3 months free support</li>
+        <li><span class="check">✓</span> 5–6 weeks delivery</li>
       </ul>
+      <a href="#contact" class="pkg-cta">Get started →</a>
     </div>
+
   </div>
 </section>
 
+<!-- ADDONS -->
 <section id="addons">
   <div class="reveal">
     <p class="section-eyebrow">Add-ons & extras</p>
     <h2 class="section-title">Build on top</h2>
-    <p class="section-sub">Stack any of these onto your package, or request as a standalone.</p>
+    <p class="section-sub">Stack any of these onto your package, or request as a standalone service.</p>
   </div>
-  <div class="addon-grid reveal">
+  <div class="addon-grid reveal reveal-delay-1">
+
     <div class="addon-card">
       <div class="addon-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="3" width="20" height="6" rx="2"/><rect x="2" y="15" width="20" height="6" rx="2"/>
           <line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
         </svg>
       </div>
       <p class="addon-name">Hosting setup</p>
       <p class="addon-price">₦30,000 setup</p>
-      <p class="addon-note">+ ₦15,000/month</p>
+      <p class="addon-note">+ ₦15,000/month ongoing</p>
     </div>
+
     <div class="addon-card">
       <div class="addon-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
         </svg>
       </div>
@@ -533,29 +875,32 @@
       <p class="addon-price">₦80,000 – ₦200,000</p>
       <p class="addon-note">Depends on complexity</p>
     </div>
+
     <div class="addon-card">
       <div class="addon-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
         </svg>
       </div>
       <p class="addon-name">SSL + domain setup</p>
       <p class="addon-price">₦20,000 one-time</p>
-      <p class="addon-note">Includes DNS config</p>
+      <p class="addon-note">Includes DNS configuration</p>
     </div>
+
     <div class="addon-card">
       <div class="addon-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
         </svg>
       </div>
       <p class="addon-name">Monthly maintenance</p>
       <p class="addon-price">₦25,000/month</p>
-      <p class="addon-note">Updates, fixes, backups</p>
+      <p class="addon-note">Updates, fixes & backups</p>
     </div>
+
     <div class="addon-card">
       <div class="addon-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
         </svg>
       </div>
@@ -563,9 +908,10 @@
       <p class="addon-price">From ₦350,000</p>
       <p class="addon-note">Android & iOS</p>
     </div>
+
     <div class="addon-card">
       <div class="addon-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
           <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
         </svg>
@@ -574,16 +920,18 @@
       <p class="addon-price">₦10,000 per round</p>
       <p class="addon-note">Beyond the 2 included</p>
     </div>
+
   </div>
 </section>
 
+<!-- PAYMENT TERMS -->
 <section id="terms">
   <div class="reveal">
     <p class="section-eyebrow">Payment terms</p>
     <h2 class="section-title">How payment works</h2>
     <p class="section-sub">Split into three milestones — you only move forward when you're satisfied with the current stage.</p>
   </div>
-  <div class="terms-grid reveal">
+  <div class="terms-grid reveal reveal-delay-1">
     <div class="term-card">
       <p class="term-pct">50%</p>
       <p class="term-when">Upfront deposit</p>
@@ -605,41 +953,135 @@
   </div>
 </section>
 
+<!-- PROCESS -->
 <section id="process">
   <div class="reveal">
     <p class="section-eyebrow">How it works</p>
     <h2 class="section-title">From idea to live site</h2>
-    <p class="section-sub">A clear process so you always know what's happening and what's next.</p>
+    <p class="section-sub">A clear process so you always know what's happening and what comes next.</p>
   </div>
-  <div class="process-steps reveal">
+  <div class="process-steps reveal reveal-delay-1">
     <div class="step">
+      <div class="step-dot"></div>
       <p class="step-num">Step 01</p>
       <p class="step-title">Consultation</p>
       <p class="step-desc">We talk through your needs and goals. I send a detailed quote within 24 hours.</p>
     </div>
     <div class="step">
+      <div class="step-dot"></div>
       <p class="step-num">Step 02</p>
       <p class="step-title">Deposit & kickoff</p>
       <p class="step-desc">You pay the 50% deposit. I start work and share a design mockup within the first week.</p>
     </div>
     <div class="step">
+      <div class="step-dot"></div>
       <p class="step-num">Step 03</p>
       <p class="step-title">Build & review</p>
       <p class="step-desc">I build the full site. You review, request changes, and we refine until you're happy.</p>
     </div>
     <div class="step">
+      <div class="step-dot"></div>
       <p class="step-num">Step 04</p>
       <p class="step-title">Launch</p>
-      <p class="step-desc">Final payment, then I hand over everything — live site, source files, and login credentials.</p>
+      <p class="step-desc">Final payment, then I hand over everything — live site, source files, and credentials.</p>
     </div>
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="reveal">
+    <p class="section-eyebrow">Frequently asked</p>
+    <h2 class="section-title">Common questions</h2>
+    <p class="section-sub">Anything else? Just send me a message.</p>
+  </div>
+  <div class="faq-list reveal reveal-delay-1">
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        Do I own the site after it's built?
+        <span class="faq-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+          </svg>
+        </span>
+      </summary>
+      <p class="faq-a">Yes — 100%. Once the final payment is made, all source code, files, and credentials are yours. There are no recurring licensing fees from me.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        What do I need to provide to get started?
+        <span class="faq-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+          </svg>
+        </span>
+      </summary>
+      <p class="faq-a">Your brand assets (logo, colors, fonts if you have them), product details, and a general idea of what you want. I'll guide you through everything else during the consultation.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        Can I upgrade my package later?
+        <span class="faq-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+          </svg>
+        </span>
+      </summary>
+      <p class="faq-a">Absolutely. You can add features or upgrade your plan at any point. I'll quote the difference based on what needs to be added.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        Which payment methods do you accept?
+        <span class="faq-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+          </svg>
+        </span>
+      </summary>
+      <p class="faq-a">Bank transfer (Nigerian banks) and mobile money. Details are shared after we agree on the scope and quote.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">
+        What happens if the project takes longer than estimated?
+        <span class="faq-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/>
+          </svg>
+        </span>
+      </summary>
+      <p class="faq-a">If delays are on my end, there's no extra charge. If scope changes are requested mid-project that extend the timeline, we'll discuss and agree on any adjustments together.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- CTA -->
 <div class="cta-section" id="contact">
-  <h2 class="section-title">Ready to build your store?</h2>
-  <p class="section-sub">Send me a message and I'll get back to you within 24 hours with a custom quote.</p>
-  <a class="cta-btn solid" href="mailto:graceolorunfemi96@gmail.com">Email me</a>
-  <a class="cta-btn outline" href="https://wa.me/2349160262280" target="_blank">WhatsApp</a>
+  <div class="cta-inner">
+    <h2 class="section-title">Ready to build your store?</h2>
+    <p class="section-sub">Send me a message and I'll get back to you within 24 hours with a custom quote.</p>
+    <div class="cta-btns">
+      <a class="cta-btn solid" href="mailto:graceolorunfemi96@gmail.com">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Email me
+      </a>
+      <a class="cta-btn outline" href="https://wa.me/2349160262280" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.561 4.14 1.535 5.874L0 24l6.29-1.518A11.956 11.956 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.67-.515-5.19-1.41l-.37-.22-3.735.902.94-3.63-.242-.374A9.964 9.964 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
 </div>
 
 <footer>
@@ -648,22 +1090,54 @@
 </footer>
 
 <script>
+  // Intersection Observer for reveal animations
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.08 });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
   reveals.forEach(el => observer.observe(el));
 
+  // Hamburger / mobile menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
+
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open');
   });
+
   document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !mobileMenu.contains(e.target)) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  const nav = document.querySelector('nav');
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'));
+        const top = target.getBoundingClientRect().top + window.scrollY - navH;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
     });
   });
 </script>
