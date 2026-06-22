@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grace Olorunfemi — Web Dev Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --cream-2: #EDE7D9;
+    --cream-3: #E2D9C8;
+    --brown: #6B4F35;
+    --brown-light: #8C6848;
+    --brown-pale: #C4A882;
+    --text: #2C1F12;
+    --text-2: #5C4433;
+    --muted: #9C8470;
+    --border: rgba(107,79,53,0.15);
+    --border-strong: rgba(107,79,53,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 2.5rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--brown);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--brown); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 2.5rem 5rem;
+    position: relative;
+    background: var(--cream);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 75% 40%, rgba(196,168,130,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brown-pale);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--text);
+    max-width: 700px;
+    margin-bottom: 1.6rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--brown);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-2);
+    max-width: 460px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--brown);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .hero-cta:hover { background: var(--brown-light); transform: translateY(-1px); }
+  .hero-cta svg { width: 14px; height: 14px; }
+  .hero-rule { height: 0.5px; background: var(--border); margin-top: 5rem; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2.5rem; }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brown-pale);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--text);
+    margin-bottom: 0.8rem;
+    line-height: 1.15;
+  }
+  .section-sub {
+    font-size: 0.92rem;
+    color: var(--muted);
+    max-width: 500px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  /* PACKAGES */
+  #packages { background: var(--cream-2); }
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .pkg-card {
+    background: var(--cream);
+    border: 0.5px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 2rem 1.8rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pkg-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(107,79,53,0.1); }
+  .pkg-card.featured {
+    background: var(--brown);
+    border-color: var(--brown);
+    color: var(--cream);
+  }
+  .pkg-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--cream-2);
+    color: var(--brown);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+  }
+  .pkg-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+    color: inherit;
+  }
+  .pkg-card.featured .pkg-name { color: var(--cream); }
+  .pkg-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .pkg-card.featured .pkg-desc { color: rgba(245,240,232,0.65); }
+  .pkg-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    color: var(--brown);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .pkg-card.featured .pkg-price { color: var(--cream); }
+  .pkg-price-sub { font-size: 0.75rem; color: var(--muted); margin-bottom: 1.6rem; }
+  .pkg-card.featured .pkg-price-sub { color: rgba(245,240,232,0.55); }
+  .pkg-divider { height: 0.5px; background: var(--border); margin-bottom: 1.4rem; }
+  .pkg-card.featured .pkg-divider { background: rgba(245,240,232,0.2); }
+  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .pkg-features li {
+    font-size: 0.84rem;
+    color: var(--text-2);
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    line-height: 1.5;
+  }
+  .pkg-card.featured .pkg-features li { color: rgba(245,240,232,0.8); }
+  .pkg-features li::before {
+    content: '✓';
+    color: var(--brown-pale);
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+  .pkg-card.featured .pkg-features li::before { color: var(--cream-3); }
+
+  /* ADDONS */
+  #addons { background: var(--cream); }
+  .addon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .addon-card {
+    background: var(--cream-2);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.4rem;
+    transition: background 0.2s;
+  }
+  .addon-card:hover { background: var(--cream-3); }
+  .addon-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.9rem;
+    color: var(--brown);
+    width: 40px; height: 40px;
+    background: var(--cream-3);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .addon-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  .addon-price { font-size: 0.85rem; color: var(--brown); font-weight: 500; }
+  .addon-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* PAYMENT TERMS */
+  #terms { background: var(--cream-2); }
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .term-card {
+    background: var(--cream);
+    border-radius: 12px;
+    border: 0.5px solid var(--border);
+    padding: 1.6rem 1.5rem;
+  }
+  .term-pct {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.2rem;
+    color: var(--brown);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .term-when {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .term-note { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+
+  .notice {
+    background: var(--cream-3);
+    border-radius: 10px;
+    padding: 1.1rem 1.4rem;
+    font-size: 0.82rem;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .notice strong { color: var(--brown); }
+
+  /* PROCESS */
+  #process { background: var(--cream); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+  }
+  .step-num {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brown-pale);
+    margin-bottom: 0.7rem;
+  }
+  .step-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--brown);
+    padding: 6rem 2.5rem;
+    text-align: center;
+  }
+  .cta-section .section-title { color: var(--cream); margin: 0 auto 1rem; }
+  .cta-section .section-sub { color: rgba(245,240,232,0.65); margin: 0 auto 2.5rem; text-align: center; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    margin: 0 0.4rem;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+  }
+  .cta-btn:hover { transform: translateY(-1px); }
+  .cta-btn.solid { background: var(--cream); color: var(--brown); }
+  .cta-btn.solid:hover { background: var(--cream-2); }
+  .cta-btn.outline { background: transparent; border: 1.5px solid rgba(245,240,232,0.4); color: var(--cream); }
+  .cta-btn.outline:hover { background: rgba(245,240,232,0.1); }
+
+  footer {
+    padding: 1.4rem 2.5rem;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: var(--cream-2);
+  }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--brown);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 57px; left: 0; right: 0;
+    background: rgba(245,240,232,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid var(--border);
+    z-index: 99;
+    flex-direction: column;
+    padding: 1rem 1.5rem 1.5rem;
+    gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 0.5px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--brown); }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero, section, .cta-section { padding-left: 1.2rem; padding-right: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Grace Olorunfemi</a>
+  <ul class="nav-links">
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#addons">Add-ons</a></li>
+    <li><a href="#terms">Payment</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#packages" class="mobile-link">Packages</a>
+  <a href="#addons" class="mobile-link">Add-ons</a>
+  <a href="#terms" class="mobile-link">Payment</a>
+  <a href="#process" class="mobile-link">Process</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<section class="hero">
+  <p class="hero-eyebrow">Web Development Services</p>
+  <h1 class="hero-title">
+    E-commerce websites<br>built to <em>sell.</em>
+  </h1>
+  <p class="hero-sub">
+    I build clean, functional online stores — from the frontend your customers see to the backend that keeps everything running. Clear pricing, no surprises.
+  </p>
+  <a href="#packages" class="hero-cta">
+    See pricing
+    <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <div class="hero-rule"></div>
+</section>
+
+<section id="packages">
+  <div class="reveal">
+    <p class="section-eyebrow">Service packages</p>
+    <h2 class="section-title">Choose your tier</h2>
+    <p class="section-sub">All packages include mobile-responsive design, basic SEO setup, and 2 rounds of revisions.</p>
+  </div>
+  <div class="pkg-grid reveal">
+    <div class="pkg-card">
+      <p class="pkg-name">Starter</p>
+      <p class="pkg-desc">Small shop, up to 20 products</p>
+      <p class="pkg-price">₦150,000</p>
+      <p class="pkg-price-sub">One-time payment</p>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>Homepage + up to 5 pages</li>
+        <li>Product listing & detail pages</li>
+        <li>Cart & checkout flow</li>
+        <li>1 payment gateway</li>
+        <li>Mobile responsive design</li>
+        <li>2 weeks delivery</li>
+      </ul>
+    </div>
+    <div class="pkg-card featured">
+      <span class="pkg-badge">Most popular</span>
+      <p class="pkg-name">Standard</p>
+      <p class="pkg-desc">Growing store, up to 100 products</p>
+      <p class="pkg-price">₦280,000</p>
+      <p class="pkg-price-sub">One-time payment</p>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>Everything in Starter</li>
+        <li>Admin dashboard</li>
+        <li>2 payment gateways</li>
+        <li>Order & inventory management</li>
+        <li>Product search & filters</li>
+        <li>3–4 weeks delivery</li>
+      </ul>
+    </div>
+    <div class="pkg-card">
+      <p class="pkg-name">Premium</p>
+      <p class="pkg-desc">Full-scale store, unlimited products</p>
+      <p class="pkg-price">₦500,000</p>
+      <p class="pkg-price-sub">One-time payment</p>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>Everything in Standard</li>
+        <li>Custom backend & API</li>
+        <li>Multi-vendor support</li>
+        <li>Analytics dashboard</li>
+        <li>Email automation</li>
+        <li>3 months free support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="addons">
+  <div class="reveal">
+    <p class="section-eyebrow">Add-ons & extras</p>
+    <h2 class="section-title">Build on top</h2>
+    <p class="section-sub">Stack any of these onto your package, or request as a standalone.</p>
+  </div>
+  <div class="addon-grid reveal">
+    <div class="addon-card">
+      <div class="addon-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="6" rx="2"/><rect x="2" y="15" width="20" height="6" rx="2"/>
+          <line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+        </svg>
+      </div>
+      <p class="addon-name">Hosting setup</p>
+      <p class="addon-price">₦30,000 setup</p>
+      <p class="addon-note">+ ₦15,000/month</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <p class="addon-name">Backend / API development</p>
+      <p class="addon-price">₦80,000 – ₦200,000</p>
+      <p class="addon-note">Depends on complexity</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <p class="addon-name">SSL + domain setup</p>
+      <p class="addon-price">₦20,000 one-time</p>
+      <p class="addon-note">Includes DNS config</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+      </div>
+      <p class="addon-name">Monthly maintenance</p>
+      <p class="addon-price">₦25,000/month</p>
+      <p class="addon-note">Updates, fixes, backups</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+        </svg>
+      </div>
+      <p class="addon-name">Mobile app (basic)</p>
+      <p class="addon-price">From ₦350,000</p>
+      <p class="addon-note">Android & iOS</p>
+    </div>
+    <div class="addon-card">
+      <div class="addon-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </div>
+      <p class="addon-name">Extra revision round</p>
+      <p class="addon-price">₦10,000 per round</p>
+      <p class="addon-note">Beyond the 2 included</p>
+    </div>
+  </div>
+</section>
+
+<section id="terms">
+  <div class="reveal">
+    <p class="section-eyebrow">Payment terms</p>
+    <h2 class="section-title">How payment works</h2>
+    <p class="section-sub">Split into three milestones — you only move forward when you're satisfied with the current stage.</p>
+  </div>
+  <div class="terms-grid reveal">
+    <div class="term-card">
+      <p class="term-pct">50%</p>
+      <p class="term-when">Upfront deposit</p>
+      <p class="term-note">Paid before work begins. Confirms the project and secures your slot in my schedule.</p>
+    </div>
+    <div class="term-card">
+      <p class="term-pct">25%</p>
+      <p class="term-when">At midpoint</p>
+      <p class="term-note">Paid once design mockups or core structure is reviewed and approved by you.</p>
+    </div>
+    <div class="term-card">
+      <p class="term-pct">25%</p>
+      <p class="term-when">On delivery</p>
+      <p class="term-note">Final balance due before the completed site is handed over and goes live.</p>
+    </div>
+  </div>
+  <div class="notice reveal">
+    <strong>Please note:</strong> All prices are base estimates. Your final quote is shared after a brief consultation. Work begins only after the deposit is confirmed. Extra revision rounds beyond what's included are billed separately.
+  </div>
+</section>
+
+<section id="process">
+  <div class="reveal">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-title">From idea to live site</h2>
+    <p class="section-sub">A clear process so you always know what's happening and what's next.</p>
+  </div>
+  <div class="process-steps reveal">
+    <div class="step">
+      <p class="step-num">Step 01</p>
+      <p class="step-title">Consultation</p>
+      <p class="step-desc">We talk through your needs and goals. I send a detailed quote within 24 hours.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">Step 02</p>
+      <p class="step-title">Deposit & kickoff</p>
+      <p class="step-desc">You pay the 50% deposit. I start work and share a design mockup within the first week.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">Step 03</p>
+      <p class="step-title">Build & review</p>
+      <p class="step-desc">I build the full site. You review, request changes, and we refine until you're happy.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">Step 04</p>
+      <p class="step-title">Launch</p>
+      <p class="step-desc">Final payment, then I hand over everything — live site, source files, and login credentials.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section" id="contact">
+  <h2 class="section-title">Ready to build your store?</h2>
+  <p class="section-sub">Send me a message and I'll get back to you within 24 hours with a custom quote.</p>
+  <a class="cta-btn solid" href="mailto:graceolorunfemi96@gmail.com">Email me</a>
+  <a class="cta-btn outline" href="https://wa.me/2349160262280" target="_blank">WhatsApp</a>
+</div>
+
+<footer>
+  <span>© 2026 Grace Olorunfemi. All rights reserved.</span>
+  <span>Web Development · Zaria, Nigeria</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
