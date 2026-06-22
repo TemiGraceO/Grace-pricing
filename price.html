@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grace Olorunfemi: Web Dev Pricing</title>
+<title>Grace Olorunfemi — Web Dev Pricing</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
 <style>
@@ -89,6 +89,277 @@
   .hero-inner {
     position: relative;
     max-width: 720px;
+  }
+
+  /* Hero split layout */
+  .hero-wrap {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .hero-copy { max-width: 620px; }
+
+  /* HERO VISUAL — animated e-commerce mockup */
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    max-width: 460px;
+    margin-left: auto;
+    perspective: 1200px;
+  }
+
+  /* Main browser window */
+  .mock-browser {
+    position: absolute;
+    inset: 0;
+    background: var(--cream);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    box-shadow:
+      0 30px 60px -20px rgba(107,79,53,0.25),
+      0 12px 24px -8px rgba(107,79,53,0.12);
+    overflow: hidden;
+    transform: rotateY(-6deg) rotateX(2deg);
+    transition: transform 0.6s ease;
+    animation: float-main 6s ease-in-out infinite;
+  }
+  .hero-visual:hover .mock-browser { transform: rotateY(-2deg) rotateX(0deg); }
+
+  @keyframes float-main {
+    0%, 100% { transform: rotateY(-6deg) rotateX(2deg) translateY(0); }
+    50% { transform: rotateY(-6deg) rotateX(2deg) translateY(-8px); }
+  }
+
+  .mock-topbar {
+    height: 28px;
+    background: var(--cream-2);
+    border-bottom: 0.5px solid var(--border-strong);
+    display: flex; align-items: center; gap: 5px;
+    padding: 0 10px;
+  }
+  .mock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cream-3); }
+  .mock-dot:nth-child(1) { background: #E8A88A; }
+  .mock-dot:nth-child(2) { background: #E8D08A; }
+  .mock-dot:nth-child(3) { background: #8AC9A8; }
+  .mock-url {
+    flex: 1;
+    height: 14px;
+    background: var(--cream);
+    border-radius: 4px;
+    margin-left: 8px;
+    font-size: 0.55rem;
+    color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    letter-spacing: 0.04em;
+  }
+
+  .mock-body {
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100% - 28px);
+  }
+
+  /* Mini store header */
+  .mock-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .mock-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.75rem;
+    color: var(--brown);
+  }
+  .mock-nav { display: flex; gap: 8px; }
+  .mock-nav-item {
+    width: 22px; height: 4px;
+    background: var(--cream-3);
+    border-radius: 2px;
+  }
+  .mock-cart {
+    width: 18px; height: 18px;
+    background: var(--brown);
+    border-radius: 4px;
+    position: relative;
+  }
+  .mock-cart::after {
+    content: '2';
+    position: absolute;
+    top: -3px; right: -3px;
+    width: 10px; height: 10px;
+    background: var(--brown-pale);
+    color: var(--cream);
+    border-radius: 50%;
+    font-size: 0.5rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+
+  /* Hero banner inside mock */
+  .mock-hero {
+    height: 32%;
+    background: linear-gradient(135deg, var(--brown) 0%, var(--brown-light) 100%);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%; right: -20%;
+    width: 70%; height: 160%;
+    background: radial-gradient(circle, rgba(245,240,232,0.2) 0%, transparent 60%);
+  }
+  .mock-hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95rem;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  .mock-hero-sub {
+    font-size: 0.5rem;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .mock-hero-btn {
+    width: fit-content;
+    padding: 4px 10px;
+    background: var(--cream);
+    color: var(--brown);
+    border-radius: 100px;
+    font-size: 0.5rem;
+    font-weight: 600;
+    position: relative;
+  }
+
+  /* Product grid inside mock */
+  .mock-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    flex: 1;
+  }
+  .mock-product {
+    background: var(--cream-2);
+    border-radius: 8px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 0.5px solid var(--border);
+    transition: transform 0.3s;
+  }
+  .mock-product-img {
+    aspect-ratio: 1.2;
+    background: linear-gradient(135deg, var(--cream-3), var(--cream));
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-product-img::after {
+    content: '';
+    position: absolute;
+    inset: 25% 30%;
+    background: var(--brown-pale);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+  .mock-product-name {
+    font-size: 0.5rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .mock-product-price {
+    font-size: 0.55rem;
+    color: var(--brown);
+    font-weight: 700;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  /* Floating cards */
+  .float-card {
+    position: absolute;
+    background: var(--cream);
+    border: 0.5px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 12px 28px -8px rgba(107,79,53,0.25);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .float-card.order {
+    top: 8%;
+    left: -8%;
+    animation: float-a 5s ease-in-out infinite;
+  }
+  .float-card.sales {
+    bottom: 12%;
+    right: -6%;
+    animation: float-b 5s ease-in-out infinite 1s;
+  }
+  .float-card.rating {
+    bottom: 38%;
+    left: -10%;
+    animation: float-c 6s ease-in-out infinite 0.5s;
+  }
+
+  @keyframes float-a {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-10px) rotate(-2deg); }
+  }
+  @keyframes float-b {
+    0%, 100% { transform: translateY(0) rotate(2deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+  @keyframes float-c {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-8px) rotate(-1deg); }
+  }
+
+  .float-icon {
+    width: 28px; height: 28px;
+    background: var(--cream-2);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brown);
+    flex-shrink: 0;
+  }
+  .float-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .float-title { font-size: 0.62rem; font-weight: 600; color: var(--text); }
+  .float-sub { font-size: 0.55rem; color: var(--muted); }
+
+  /* Badge ring decoration */
+  .hero-visual::after {
+    content: '';
+    position: absolute;
+    inset: -8%;
+    border: 1px dashed var(--border);
+    border-radius: 30px;
+    z-index: -1;
+    animation: spin-slow 60s linear infinite;
+  }
+  @keyframes spin-slow {
+    to { transform: rotate(360deg); }
   }
 
   .hero-eyebrow {
@@ -667,6 +938,12 @@
   .mobile-menu a:hover { color: var(--brown); }
 
   /* ─── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 960px) {
+    .hero-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-copy { max-width: 100%; }
+    .hero-visual { margin: 0 auto; max-width: 380px; }
+  }
+
   @media (max-width: 900px) {
     .pkg-grid { grid-template-columns: 1fr 1fr; }
     .addon-grid { grid-template-columns: 1fr 1fr; }
@@ -684,6 +961,9 @@
     .hamburger { display: flex; }
 
     .hero { padding-left: 1.2rem; padding-right: 1.2rem; padding-bottom: 3rem; }
+    .hero-wrap { gap: 2.5rem; }
+    .hero-visual { max-width: 320px; }
+    .float-card { display: none; }
     .hero-stats { gap: 1.2rem; margin-top: 3rem; }
     .stat-divider { display: none; }
 
@@ -735,45 +1015,136 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <p class="hero-eyebrow">Web Development Services</p>
-    <h1 class="hero-title">
-      E-commerce websites<br>built to <em>sell.</em>
-    </h1>
-    <p class="hero-sub">
-      Clean, functional online stores. From the storefront your customers love to the backend that keeps everything running. Clear pricing, no surprises.
-    </p>
-    <div class="hero-actions">
-      <a href="#packages" class="hero-cta">
-        See pricing
-        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <a href="#contact" class="hero-link">Get a free quote →</a>
+  <div class="hero-wrap">
+
+    <div class="hero-copy hero-inner">
+      <p class="hero-eyebrow">Web Development Services</p>
+      <h1 class="hero-title">
+        E-commerce websites<br>built to <em>sell.</em>
+      </h1>
+      <p class="hero-sub">
+        Clean, functional online stores — from the storefront your customers love to the backend that keeps everything running. Clear pricing, no surprises.
+      </p>
+      <div class="hero-actions">
+        <a href="#packages" class="hero-cta">
+          See pricing
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1L13 7M13 7L7 13M13 7H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#contact" class="hero-link">Get a free quote →</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">40+</span>
+          <span class="stat-label">Projects delivered</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">Years experience</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">24h</span>
+          <span class="stat-label">Quote turnaround</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Client satisfaction</span>
+        </div>
+      </div>
     </div>
 
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-num">40+</span>
-        <span class="stat-label">Projects delivered</span>
+    <!-- Animated e-commerce mockup -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="mock-browser">
+        <div class="mock-topbar">
+          <span class="mock-dot"></span>
+          <span class="mock-dot"></span>
+          <span class="mock-dot"></span>
+          <span class="mock-url">yourstore.com</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-header">
+            <span class="mock-logo">LUMEN.</span>
+            <div class="mock-nav">
+              <span class="mock-nav-item"></span>
+              <span class="mock-nav-item"></span>
+              <span class="mock-nav-item"></span>
+            </div>
+            <div class="mock-cart"></div>
+          </div>
+          <div class="mock-hero">
+            <p class="mock-hero-title">New Collection</p>
+            <p class="mock-hero-sub">Up to 40% off this week</p>
+            <span class="mock-hero-btn">Shop now</span>
+          </div>
+          <div class="mock-grid">
+            <div class="mock-product">
+              <div class="mock-product-img"></div>
+              <span class="mock-product-name">Linen Shirt</span>
+              <span class="mock-product-price">₦24,000</span>
+            </div>
+            <div class="mock-product">
+              <div class="mock-product-img"></div>
+              <span class="mock-product-name">Sneakers</span>
+              <span class="mock-product-price">₦58,000</span>
+            </div>
+            <div class="mock-product">
+              <div class="mock-product-img"></div>
+              <span class="mock-product-name">Tote Bag</span>
+              <span class="mock-product-price">₦18,500</span>
+            </div>
+            <div class="mock-product">
+              <div class="mock-product-img"></div>
+              <span class="mock-product-name">Wool Cap</span>
+              <span class="mock-product-price">₦12,000</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-num">3+</span>
-        <span class="stat-label">Years experience</span>
+
+      <!-- Floating notification cards -->
+      <div class="float-card order">
+        <div class="float-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </div>
+        <div class="float-text">
+          <span class="float-title">New order</span>
+          <span class="float-sub">₦45,200 · just now</span>
+        </div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-num">24h</span>
-        <span class="stat-label">Quote turnaround</span>
+
+      <div class="float-card sales">
+        <div class="float-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <div class="float-text">
+          <span class="float-title">+128% sales</span>
+          <span class="float-sub">this month</span>
+        </div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">Client satisfaction</span>
+
+      <div class="float-card rating">
+        <div class="float-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="float-text">
+          <span class="float-title">4.9 / 5.0</span>
+          <span class="float-sub">customer rating</span>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -782,7 +1153,7 @@
   <div class="reveal">
     <p class="section-eyebrow">Service packages</p>
     <h2 class="section-title">Choose your tier</h2>
-    <p class="section-sub">All packages include mobile responsive design, basic SEO setup, and 2 rounds of revisions.</p>
+    <p class="section-sub">All packages include mobile-responsive design, basic SEO setup, and 2 rounds of revisions.</p>
   </div>
   <div class="pkg-grid reveal reveal-delay-1">
 
@@ -929,7 +1300,7 @@
   <div class="reveal">
     <p class="section-eyebrow">Payment terms</p>
     <h2 class="section-title">How payment works</h2>
-    <p class="section-sub">Split into three milestones. You only move forward when you're satisfied with the current stage.</p>
+    <p class="section-sub">Split into three milestones — you only move forward when you're satisfied with the current stage.</p>
   </div>
   <div class="terms-grid reveal reveal-delay-1">
     <div class="term-card">
@@ -983,7 +1354,7 @@
       <div class="step-dot"></div>
       <p class="step-num">Step 04</p>
       <p class="step-title">Launch</p>
-      <p class="step-desc">Final payment, then I hand over everything: Live site, Source files, and Credentials.</p>
+      <p class="step-desc">Final payment, then I hand over everything — live site, source files, and credentials.</p>
     </div>
   </div>
 </section>
@@ -1006,7 +1377,7 @@
           </svg>
         </span>
       </summary>
-      <p class="faq-a">Yes! 100%. Once the final payment is made, all source code, files, and credentials are yours. There are no recurring licensing fees from me.</p>
+      <p class="faq-a">Yes — 100%. Once the final payment is made, all source code, files, and credentials are yours. There are no recurring licensing fees from me.</p>
     </details>
 
     <details class="faq-item">
